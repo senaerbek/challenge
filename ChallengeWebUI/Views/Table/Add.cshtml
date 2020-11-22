@@ -1,0 +1,25 @@
+﻿@using Entities.Concrete
+@model Manager
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add</h1>
+<form class="form-group" method="post">
+
+    <label>First Name</label>
+    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @required = "required", @maxlength = "25", style = "width:300px;" })
+
+    <label>Last Name</label>
+    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @required = "required", @maxlength = "25", style = "width:300px;" })
+
+    <label>Email</label>
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email",  @required = "required", @maxlength = "25", style = "width:300px;" })
+
+    <label>Phone Number</label>
+    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control ", @required = "required", @maxlength = "11", style = "width:300px;" })
+    <br />
+    <button class="btn btn-success">Add</button>
+</form>

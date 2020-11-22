@@ -1,0 +1,47 @@
+﻿@using Entities.Concrete
+@model List<Manager>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Manager List</h1>
+<br/>
+
+@using (Html.BeginForm("Index", "Table", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("query")
+        <input type="submit" value="Search" />
+    </p>
+}
+<br />
+<table class="table">
+    <tr>
+        <th>@Html.ActionLink("Id", "Index", new { sort = ViewBag.SortIdParameter })</th>
+        <th>@Html.ActionLink("First Name", "Index", new { sort = ViewBag.SortFirstNameParameter })</th>
+        <th>@Html.ActionLink("Last Name", "Index", new { sort = ViewBag.SortLastNameParameter })</th>
+        <th>@Html.ActionLink("Email", "Index", new { sort = ViewBag.SortEmailParameter })</th>
+        <th>@Html.ActionLink("Phone Number", "Index", new { sort = ViewBag.SortPhoneNumberParameter })</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Employees</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.PhoneNumber</td>
+            <td><a href="/Table/Delete/@item.Id" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Table/GetById/@item.Id" class="btn btn-secondary">Update</a></td>
+            <td><a href="/Employee/GetByManagerId/@item.Id" class="btn btn-info">Employees</a></td>
+        </tr>
+    }
+
+</table>
+<a href="/Table/Add/" class="btn btn-success">Add</a>

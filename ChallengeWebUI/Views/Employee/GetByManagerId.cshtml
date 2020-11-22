@@ -1,0 +1,44 @@
+﻿@using Entities.Concrete
+@model List<Employee>
+
+@{
+    ViewData["Title"] = "GetByManagerId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Employees</h1>
+<br />
+
+@using (Html.BeginForm("GetByManagerId", "Employee", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("query")
+        <input type="submit" value="Search" />
+    </p>
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>@Html.ActionLink("Id", "GetByManagerId", new { sort = ViewBag.SortIdParameter })</th>
+        <th>ManagerId</th>
+        <th>@Html.ActionLink("FirstName", "GetByManagerId", new { sort = ViewBag.SortFirstNameParameter })</th>
+        <th>@Html.ActionLink("LastName", "GetByManagerId", new { sort = ViewBag.SortLastNameParameter })</th>
+        <th>@Html.ActionLink("Email", "GetByManagerId", new { sort = ViewBag.SortEmailParameter })</th>
+        <th>@Html.ActionLink("Salary", "GetByManagerId", new { sort = ViewBag.SortSalaryParameter })</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.ManagerId</td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.Salary</td>
+
+        </tr>
+    }
+
+</table>
